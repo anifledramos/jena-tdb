@@ -1,0 +1,1 @@
+bin/tdbquery --loc data/test --time "SELECT ?subject ?predicate ?object WHERE { ?subject ?predicate ?object }"

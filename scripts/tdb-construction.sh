@@ -1,0 +1,1 @@
+bin/tdbloader --loc data/test/ data/test.nt
