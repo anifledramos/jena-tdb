@@ -13,7 +13,13 @@
 ## Create directory for test files
     $ mkdir data
 
-## Test basic query
+## TDB Execution scripts
+
+    $ ./scripts/tdb-construction.sh
+
+    $ ./scripts/tdb-spo.sh
+
+## Test basic query without TDB
 
     $ bin/sparql --data=data/test.nt --query=data/q1.rq
     --------------------------------------------------------------------------------------------

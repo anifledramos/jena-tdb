@@ -1,11 +1,11 @@
-docker stop gccdocker
+docker stop tdbdocker
 
-docker rm gccdocker
+docker rm tdbdocker
 
-docker build -t jena --rm=true .
+docker build -t jenatdb --rm=true .
 
-docker run --name jenatdb -it jena
+docker run --name tdbdocker -it jenatdb
 
-# docker run --name jenatdb --mount type=bind,source="$(pwd)/data", target=/data -it jena
+# docker run --name tdbdocker --mount type=bind,source="$(pwd)/data", target=/data -it jenatdb
 
-#docker exec -it jenatdb /bin/bash
+#docker exec -it tdbdocker /bin/bash
