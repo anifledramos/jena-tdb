@@ -1,1 +1,1 @@
-bin/tdbloader --loc data/test-tdb/ data/test.nt
+bin/tdbloader --loc /data/test-tdb/ /data/test.nt
