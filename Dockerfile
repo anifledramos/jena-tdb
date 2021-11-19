@@ -21,6 +21,3 @@ RUN apt-get update
 ENV JENA_HOME /opt/jena-tdb
 ENV CLASSPATH $JENA_HOME/lib
 
-RUN cd /opt/jena-tdb/ && ./scripts/tdb-construction.sh
-
-RUN cd /opt/jena-tdb/ && ./scripts/tdb-spo.sh
