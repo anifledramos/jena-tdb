@@ -1,11 +1,11 @@
-docker stop tdbdocker
+docker stop rdfdocker
 
-docker rm tdbdocker
+docker rm rdfdocker
 
-docker build -t jenatdb --rm=true --no-cache=true .
+docker build -t jenahdt --rm=true --no-cache=true .
 
-#docker run --name tdbdocker -it jenatdb
+#docker run --name rdfdocker -it jenahdt
 
-docker run --name tdbdocker --mount type=bind,source="$(pwd)/../data",target=/data -it jenatdb
+docker run --name rdfdocker --mount type=bind,source="$(pwd)/../data",target=/data -it jenahdt
 
-docker exec -it tdbdocker /bin/bash
+docker exec -it rdfdocker /bin/bash
