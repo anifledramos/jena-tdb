@@ -21,3 +21,6 @@ RUN apt-get update
 ENV JENA_HOME /opt/jena-tdb
 ENV CLASSPATH $JENA_HOME/lib
 
+RUN ./opt/jena-tdb/bin/tdbloader --loc /data/test-tdb /opt/jena-tdb/data/test.nt
+
+RUN ./opt/jena-tdb/bin/tdbquery --loc /data/test-tdb --time "SELECT ?s ?p ?o WHERE { ?s ?p ?o }"
