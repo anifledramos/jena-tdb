@@ -25,6 +25,7 @@ import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
+import org.apache.jena.query.ResultSetFormatter;
 import org.apache.jena.rdf.model.Model;
 
 import org.apache.jena.sparql.util.QueryUtils;
@@ -66,6 +67,7 @@ public class JenaServer {
 
     protected int runQuery(String queryString) {
         int nres = 0;
+        System.out.println("QUERY: " + queryString);
         Query query = QueryFactory.create(queryString);
         QueryExecution qexec = QueryExecutionFactory.create(query, ds);
 
@@ -88,7 +90,7 @@ public class JenaServer {
     }
 
     /**
-     * Read from a line, where each component is separated by space.
+     * Read from a line, where each component is separated by space. Build basic SPARQL query.
      *
      * @param line
      */
@@ -102,6 +104,7 @@ public class JenaServer {
 
         String sub = line.substring(posa, posb);
         if (sub.equals("?")) sub = "?s";
+        else sub = "<"+sub+">";
 
         // SET PREDICATE
         posa = split+1;
@@ -109,6 +112,7 @@ public class JenaServer {
 
         String pred = line.substring(posa, posb);
         if (pred.equals("?")) pred = "?p";
+        else pred = "<"+pred+">";
 
         // SET OBJECT
         posa = split+1;
@@ -119,17 +123,18 @@ public class JenaServer {
 
         String obj = line.substring(posa, posb);
         if (obj.equals("?")) obj = "?o";
+        else if (!obj.startsWith("\"")) {
+            obj = "<"+obj+">";
+        }
 
         return "SELECT * WHERE { " + sub + " " + pred + " " + obj + " }";
     }
 
     public void execute() throws IOException {
         // Direct way: Make a TDB-back Jena model in the named directory.
-        String directory = "MyDatabases/DB1" ;
+        String directory = this.input ;
+        System.out.println("Loading from " + directory);
         ds = TDBFactory.createDataset(directory) ;
-        model = ds.getDefaultModel() ;
-
-
 
         ServerSocket serverSocket = null;
         Socket socket = null;
