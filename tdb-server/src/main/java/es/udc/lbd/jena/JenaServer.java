@@ -77,6 +77,9 @@ public class JenaServer {
             QuerySolution soln = results.next();
             nres ++;
         }
+        if (logger != null) {
+            logger.println(queryString + " " + nres);
+        }
         return nres;
     }
 
